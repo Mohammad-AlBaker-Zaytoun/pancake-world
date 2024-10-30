@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Grid from 'components/grid';
-import { getMenu } from 'lib/shopify';
+import { getMenu } from 'lib/menu';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import MainLogo from 'public/logo/logo';
@@ -8,7 +8,7 @@ import MainLogo from 'public/logo/logo';
 export default async function Header({ isInternalPage }: { isInternalPage?: boolean }) {
   // Get menu from shopify
   const { MAIN_MENU_NAME } = process.env;
-  const menu = await getMenu(MAIN_MENU_NAME || '');
+  const menu = await getMenu();
 
   return (
     <header className={clsx('relative z-10 mx-auto', !isInternalPage && 'lg:pt-12')}>

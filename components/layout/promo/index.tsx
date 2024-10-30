@@ -1,4 +1,3 @@
-import { Button } from 'components/button';
 import Grid from 'components/grid';
 import Image from 'next/image';
 import Cake from 'public/icons/cake';
@@ -10,30 +9,29 @@ export default function Promo() {
   return (
     <section className="container mx-auto my-[70px] flex max-w-[1140px] items-center justify-between px-2.5">
       <div>
-        <h2 className="mb-8 text-header-2 font-semibold leading-none">Only the best ingredients</h2>
+        <h2 className="mb-8 text-header-2 font-semibold leading-none">Only the best</h2>
         <Grid className="flex flex-col">
           <Grid.Item className="mb-5 flex items-center">
             <Egg className="mr-2.5 w-10" />
-            Pretium fusce id velit ut tortor
+            Top Ingredients
           </Grid.Item>
           <Grid.Item className="mb-5 flex items-center">
             <Van className=" mr-2.5 w-10" />
-            Viverra ipsum nunc aliquet bibendum enim facilisis
+            Fast Shipping
           </Grid.Item>
           <Grid.Item className="mb-5 flex items-center">
             <Cake className=" mr-2.5 w-10" />
-            Vestibulum lorem sed risus ultricies tristique nulla aliquet enim
+            Great Taste
           </Grid.Item>
           <Grid.Item className="flex items-center ">
             <PanCake className="mr-2.5 w-10" />
-            Lobortis mattis aliquam
+            Number One Pancakes
           </Grid.Item>
         </Grid>
-        <Button className="mt-7">Find out more</Button>
       </div>
       <div className="hidden md:block">
         <Image
-          src="/promo/special-cake.png"
+          src="/promo/pancake-illust1.png"
           width="446"
           height="445"
           alt="Choco cake promotional"

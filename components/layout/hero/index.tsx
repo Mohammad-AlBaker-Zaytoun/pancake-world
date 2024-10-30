@@ -10,7 +10,7 @@ const HeroContent = () => {
     <div className="container relative z-10 mx-auto max-w-[1140px] pt-10 lg:pt-0">
       <div className="mx-auto flex flex-col items-center justify-between md:flex-row">
         <Image
-          src="/hero/hero-cake.webp"
+          src="/hero/pancake-illust2.png"
           width={400}
           height={520}
           alt="Cake"
@@ -19,16 +19,16 @@ const HeroContent = () => {
         />
         <div className="flex max-w-2xl flex-col items-center  md:items-start">
           <h2 className="text-center text-3xl font-semibold leading-tight md:text-left lg:text-5xl">
-            Free Next.Js template with <span className="whitespace-nowrap">Headless Shopify❤️</span>
+            Pancake <span className="whitespace-nowrap">Paradise</span>
           </h2>
           <div className="mt-8 flex flex-col gap-2.5 min-[380px]:flex-row">
             <Link href="/products">
               <Button>Go to products</Button>
             </Link>
-            <Link href="https://github.com/stefanogali/panini-cake" target="_blank">
+            <Link href="https://github.com/Mohammad-AlBaker-Zaytoun" target="_blank">
               <Button className="flex items-center gap-2">
                 <Github className="fill-white" />
-                Get template
+                Visit Developer
               </Button>
             </Link>
           </div>

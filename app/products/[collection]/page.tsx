@@ -1,4 +1,4 @@
-import { getCollection, getCollectionProducts } from 'lib/shopify';
+import { getProducts } from 'lib/data'; // Use your local data function
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -11,14 +11,13 @@ export async function generateMetadata({
 }: {
   params: { collection: string };
 }): Promise<Metadata> {
-  const collection = await getCollection(params.collection);
+  const collection = await getProducts(); // Simulate fetching a collection (you may need to define a collection structure)
 
   if (!collection) return notFound();
 
   return {
-    title: collection.seo?.title || collection.title,
-    description:
-      collection.seo?.description || collection.description || `${collection.title} products`
+    title: `${params.collection} Collection`, // You can modify this to fit your actual collection metadata
+    description: `Products under the ${params.collection} collection.`
   };
 }
 
@@ -31,7 +30,9 @@ export default async function CategoryPage({
 }) {
   const { sort } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
-  const products = await getCollectionProducts({ collection: params.collection, sortKey, reverse });
+
+  // Simulate fetching products for a collection
+  const products = await getProducts(); // Modify this function to get the products of the specific collection if needed
 
   return (
     <section>
@@ -39,7 +40,7 @@ export default async function CategoryPage({
         <p className="text-lg py-3">{`No products found in this collection`}</p>
       ) : (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <ProductGridItems products={products} />
+          <ProductGridItems products={products} /> {/* Ensure this passes the correct type */}
         </Grid>
       )}
     </section>

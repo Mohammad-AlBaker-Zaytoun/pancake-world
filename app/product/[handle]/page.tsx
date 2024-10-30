@@ -5,9 +5,7 @@ import CustomCarousel from 'components/custom-carousel';
 import { GridTileImage } from 'components/grid/tile';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
-import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
-import { getProduct, getProductRecommendations } from 'lib/shopify';
-import { Image } from 'lib/shopify/types';
+import { getProduct, getProductRecommendations } from 'lib/product'; // Use your local functions
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -20,8 +18,8 @@ export async function generateMetadata({
 
   if (!product) return notFound();
 
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const { url, altText } = product.featuredImage;
+  const indexable = true; // Set to true since we're not using hidden product tags
 
   return {
     title: product.seo.title || product.title,
@@ -39,9 +37,7 @@ export async function generateMetadata({
           images: [
             {
               url,
-              width,
-              height,
-              alt
+              alt: altText
             }
           ]
         }
@@ -62,12 +58,12 @@ export default async function ProductPage({ params }: { params: { handle: string
     image: product.featuredImage.url,
     offers: {
       '@type': 'AggregateOffer',
-      availability: product.availableForSale
+      availability: product.available
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
-      priceCurrency: product.priceRange.minVariantPrice.currencyCode,
-      highPrice: product.priceRange.maxVariantPrice.amount,
-      lowPrice: product.priceRange.minVariantPrice.amount
+      priceCurrency: 'USD',
+      highPrice: product.price.toFixed(2), // Convert price to string here
+      lowPrice: product.price.toFixed(2) // Convert price to string here
     }
   };
 
@@ -88,7 +84,7 @@ export default async function ProductPage({ params }: { params: { handle: string
               }
             >
               <Gallery
-                images={product.images.map((image: Image) => ({
+                images={product.images.map((image) => ({
                   src: image.url,
                   altText: image.altText
                 }))}
@@ -126,8 +122,8 @@ async function RelatedProducts({ id }: { id: string }) {
                   alt={product.title}
                   label={{
                     title: product.title,
-                    amount: product.priceRange.maxVariantPrice.amount,
-                    currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                    amount: product.price.toFixed(2), // Convert price to string
+                    currencyCode: 'USD'
                   }}
                   src={product.featuredImage?.url}
                   fill

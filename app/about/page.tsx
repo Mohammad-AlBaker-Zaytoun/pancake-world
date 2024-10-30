@@ -1,19 +1,18 @@
 import Prose from 'components/prose';
-import { getPage } from 'lib/shopify';
-import { Metafields } from 'lib/shopify/types';
+import { Metafields, getPage } from 'lib/data'; // Use your local data module
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata(): Promise<Metadata> {
   const metafields = [
-    { key: 'chef_1_bio', namespace: 'panini-cake' },
-    { key: 'chef_2_bio', namespace: 'panini-cake' },
-    { key: 'chef_3_bio', namespace: 'panini-cake' },
-    { key: 'multiple_text_about', namespace: 'panini-cake' }
+    { key: 'chef_1_bio', namespace: 'Pancake-Paradise' },
+    { key: 'chef_2_bio', namespace: 'Pancake-Paradise' },
+    { key: 'chef_3_bio', namespace: 'Pancake-Paradise' },
+    { key: 'multiple_text_about', namespace: 'Pancake-Paradise' }
   ];
 
-  const page = await getPage('about', metafields);
+  const page = await getPage('about', metafields); // Fetch page data from local source
 
   if (!page) return notFound();
 
@@ -30,18 +29,17 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const metafields = [
-    { key: 'chef_1_bio', namespace: 'panini-cake' },
-    { key: 'chef_2_bio', namespace: 'panini-cake' },
-    { key: 'chef_3_bio', namespace: 'panini-cake' },
-    { key: 'multiple_text_about', namespace: 'panini-cake' }
+    { key: 'chef_1_bio', namespace: 'Pancake-Paradise' },
+    { key: 'chef_2_bio', namespace: 'Pancake-Paradise' },
+    { key: 'chef_3_bio', namespace: 'Pancake-Paradise' },
+    { key: 'multiple_text_about', namespace: 'Pancake-Paradise' }
   ];
 
   const page = await getPage('about', metafields);
   if (!page) return notFound();
 
   const chefBioFields = ['chef_1_bio', 'chef_2_bio', 'chef_3_bio'];
-  const chefsBio =
-    page.metafields?.filter((metafield) => chefBioFields.includes(metafield?.key)) || [];
+  const chefsBio = page.metafields?.filter((metafield) => chefBioFields.includes(metafield?.key)) || [];
 
   const chefsImgClassNames =
     'mb-2.5 h-35 w-35 sm:h-40 sm:w-40 rounded-full border-8 border-[#fff0dd]';
@@ -49,40 +47,18 @@ export default async function AboutPage() {
   const Chefs = ({ chefsBio }: { chefsBio: Metafields[] }) => {
     return (
       <>
-        <h2 className="mb-8 text-header-2 font-semibold leading-none">Our chefs</h2>
+        <h2 className="mb-8 text-header-2 font-semibold leading-none">Our chef</h2>
         <div className="mb-[70px] flex flex-wrap justify-between leading-7">
           <div className="basis-[48%] sm:basis-[31%]">
             <Image
-              src="/about/chef-1.png"
+              src="/about/cheff.webp"
               alt="Chef 1"
               className={`${chefsImgClassNames}`}
               width="250"
               height="250"
             />
-            <h4 className="text-header-4 font-semibold">James Red</h4>
+            <h4 className="text-header-4 font-semibold">M.Dbouk</h4>
             <p>{chefsBio[0]?.value}</p>
-          </div>
-          <div className="basis-[48%] sm:basis-[31%]">
-            <Image
-              src="/about/chef-2.png"
-              alt="Chef 2"
-              className={`${chefsImgClassNames}`}
-              width="250"
-              height="250"
-            />
-            <h4 className="text-header-4 font-semibold">Mark Black</h4>
-            <p>{chefsBio[1]?.value}</p>
-          </div>
-          <div className="mt-5 basis-[48%] sm:mt-0 sm:basis-[31%]">
-            <Image
-              src="/about/chef-3.png"
-              alt="Chef 3"
-              className={`${chefsImgClassNames}`}
-              width="250"
-              height="250"
-            />
-            <h4 className="text-header-4 font-semibold">Jason Green</h4>
-            <p>{chefsBio[2]?.value}</p>
           </div>
         </div>
       </>

@@ -3,12 +3,11 @@ import ProductGridItems from 'components/layout/product-grid-items';
 import FilterList from 'components/layout/products-filter/filter';
 import Search from 'components/search-product';
 import { defaultSort, sorting } from 'lib/constants';
-import { getProducts } from 'lib/shopify';
+import { getProducts } from 'lib/data'; // Use local data
 
 export const metadata = {
-  title: 'Free Next.js Ecommerce template using Shopify headless integration',
-  description:
-    'Products page for the ecommerce store. Clone or fork this template to build your own ecommerce store with Next.js, Vercel, and Shopify.'
+  title: 'Pancakes',
+  description: 'Pancakes List'
 };
 
 export default async function ProductsPage({
@@ -19,7 +18,8 @@ export default async function ProductsPage({
   const { sort, q: searchValue } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const products = await getProducts({ sortKey, reverse, query: searchValue });
+  // Since your getProducts function does not accept arguments, we call it without any parameters.
+  const products = await getProducts();
 
   const resultsText = products.length > 1 ? 'results' : 'result';
 

@@ -1,6 +1,6 @@
 import Grid from 'components/grid';
 import { GridTileImage } from 'components/grid/tile';
-import { Product } from 'lib/shopify/types';
+import { Product } from 'lib/data'; // Use your local Product type
 import { imagePlaceholder } from 'lib/utils';
 import Link from 'next/link';
 
@@ -17,11 +17,11 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
               alt={product.title}
               label={{
                 title: product.title,
-                amount: product.priceRange.maxVariantPrice.amount,
-                currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                amount: product.price.toFixed(2), // Use price from local Product type
+                currencyCode: 'USD'
               }}
               placeholder={`data:image/svg+xml;base64,${imagePlaceholder(358, 358)}`}
-              src={product.featuredImage?.url}
+              src={product.imageUrl} // Use imageUrl from local Product type
               fill
               sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             />

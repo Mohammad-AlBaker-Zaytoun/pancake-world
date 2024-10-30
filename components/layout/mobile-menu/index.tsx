@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, ShoppingCartIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import CloseCart from 'components/cart/close-cart';
 import Search, { SearchSkeleton } from 'components/search-product';
 import { Menu } from 'lib/shopify/types';
@@ -101,12 +101,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   </nav>
                 ) : null}
               </div>
-              <div
-                className="mt-auto flex w-full cursor-pointer justify-center bg-secondary-light-blue py-2"
-                onClick={clickHandler}
-              >
-                <ShoppingCartIcon className="h-8 stroke-white" />
-              </div>
+             
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>
