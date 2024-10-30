@@ -2,7 +2,7 @@
 
 The live project can be found at [https://pancake-world.vercel.app](https://pancake-world.vercel.app/)
 
-![Hero Image](/public/imgs/banner.png?raw=true 'Panini Cake Shop hero')
+![Hero Image](/public/imgs/banner.png?raw=true 'Pancake World')
 
 A Next.js 14 and App Router-ready template featuring:
 
