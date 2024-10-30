@@ -1,6 +1,6 @@
-# [Pancake-World Landpage](https://panini-cake.vercel.app/)
+# [Pancake-World Landpage](https://pancake-world.vercel.app)
 
-The live project can be found at [https://panini-cake.vercel.app/](https://panini-cake.vercel.app/)
+The live project can be found at [https://pancake-world.vercel.app](https://pancake-world.vercel.app/)
 
 ![Hero Image](/public/imgs/banner.png?raw=true 'Panini Cake Shop hero')
 
