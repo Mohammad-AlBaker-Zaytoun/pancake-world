@@ -7,20 +7,14 @@ import Search, { SearchSkeleton } from 'components/search-product';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, Suspense, useContext, useEffect, useState } from 'react';
-import { CartContext } from 'store/cart-context';
+import { Fragment, Suspense, useEffect, useState } from 'react';
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const cartContext = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
-  const clickHandler = () => {
-    setIsOpen(false);
-    cartContext.setIsOpen(true);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,9 +35,9 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="ml-auto flex h-11 w-11 items-center justify-center lg:hidden"
+        className="fixed right-4 top-30 z-50 flex h-11 w-11 items-center justify-center bg-white shadow-md lg:hidden"
       >
-        <Bars3Icon className="h-10 rounded-md border border-slate-50 bg-white stroke-secondary-light-blue p-1" />
+        <Bars3Icon className="h-10 w-10 border border-slate-50 bg-white stroke-secondary-light-blue p-1" />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -101,7 +95,6 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   </nav>
                 ) : null}
               </div>
-             
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>

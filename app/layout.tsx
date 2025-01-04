@@ -4,7 +4,6 @@ import Providers from 'components/layout/context-providers';
 import Footer from 'components/layout/footer';
 import MobileMenu from 'components/layout/mobile-menu';
 import { getMenu } from 'lib/menu'; // Updated import to use local menu
-import { revalidatePath } from 'next/cache';
 import { Gochi_Hand, Jost } from 'next/font/google';
 import Link from 'next/link';
 import MainLogo from 'public/logo/logo';
@@ -51,10 +50,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  // revalidate fetches the data from the server and updates the cache.
-  revalidatePath('/', 'layout');
-
-  // Get menu from local source
   const menu = await getMenu();
 
   return (
@@ -64,16 +59,17 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </head>
       <body className="leading-[2em] text-black dark:bg-white">
         <Providers>
-          <main className="pt-20 lg:pt-0">
+          {/* Added padding classes to handle spacing for both mobile and desktop */}
+          <main className="pt-44 lg:pt-0">
             <div className="fixed right-0 top-0 z-50 flex w-full justify-end lg:w-auto">
               <div className="hidden pr-16 pt-16 lg:inline-block">{/* <Cart /> */}</div>
-              <div className="flex w-full items-center justify-between bg-light-pink p-2.5 lg:hidden">
+              <div className="flex w-full items-center justify-between bg-light-pink lg:hidden">
                 <Link href="/">
                   <MainLogo
-                    width="80px"
-                    height="75px"
+                    width="10px"
+                    height="5px"
                     aria-label="Logo"
-                    className={clsx('max-w-[5rem]')}
+                    className={clsx('max-w-[1rem]')}
                   />
                 </Link>
                 <MobileMenu menu={menu} />

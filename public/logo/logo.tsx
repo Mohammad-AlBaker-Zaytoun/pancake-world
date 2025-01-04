@@ -3,8 +3,8 @@ export default function MainLogo(props: React.ComponentProps<'svg'>) {
     <svg
       version="1.1"
       viewBox="0 0 2048 1261"
-      width="350"
-      height="200"
+      width="270"
+      height="130"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
