@@ -7,7 +7,7 @@ import { getMenu } from 'lib/menu'; // Updated import to use local menu
 import { Gochi_Hand, Jost } from 'next/font/google';
 import Link from 'next/link';
 import MainLogo from 'public/logo/logo';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import './globals.css';
 
 // Local ensureStartsWith function
@@ -72,7 +72,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                     className={clsx('max-w-[1rem]')}
                   />
                 </Link>
-                <MobileMenu menu={menu} />
+                <Suspense fallback={null}>
+                  <MobileMenu menu={menu} />
+                </Suspense>
               </div>
             </div>
             {children}

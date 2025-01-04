@@ -31,11 +31,11 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
   }, [pathname, searchParams]);
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="fixed right-4 top-30 z-50 flex h-11 w-11 items-center justify-center bg-white shadow-md lg:hidden"
+        className="top-30 fixed right-4 z-50 flex h-11 w-11 items-center justify-center bg-white shadow-md lg:hidden"
       >
         <Bars3Icon className="h-10 w-10 border border-slate-50 bg-white stroke-secondary-light-blue p-1" />
       </button>
@@ -99,6 +99,6 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
           </Transition.Child>
         </Dialog>
       </Transition>
-    </>
+    </Suspense>
   );
 }
