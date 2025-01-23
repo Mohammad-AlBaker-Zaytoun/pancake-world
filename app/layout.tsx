@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Providers from 'components/layout/context-providers';
 import Footer from 'components/layout/footer';
 import MobileMenu from 'components/layout/mobile-menu';
-import { getMenu } from 'lib/menu'; // Updated import to use local menu
+import { getMenu } from 'lib/menu';
 import { Gochi_Hand, Jost } from 'next/font/google';
 import Link from 'next/link';
 import MainLogo from 'public/logo/logo';
